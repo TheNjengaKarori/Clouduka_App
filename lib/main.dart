@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
@@ -6,297 +7,245 @@ import 'login.dart';
 void main() {
   runApp(const SignupPage());
 }
+
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
-      ),
       home: Scaffold(
-        body: ListView(children: [
-          SignupView(),
-        ]),
+        body: SignupView(),
       ),
     );
   }
 }
 
-class SignupView extends StatelessWidget {
+class SignupView extends StatefulWidget {
+  @override
+  _SignupViewState createState() => _SignupViewState();
+}
+
+class _SignupViewState extends State<SignupView> {
+  bool _isPasswordVisible = false;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
+  }
+
+  void _navigateToHomePage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+  }
+
+  void _navigateToLoginPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 374,
-          height: 811,
-          decoration: ShapeDecoration(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 19,
-                top: 40,
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage("https://via.placeholder.com/24x24"),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 19,
-                top: 114,
-                child: Text(
-                  'Create your\naccount.',
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, top: 115),
+            width: 220,
+            height: 110,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Create your',
                   style: TextStyle(
                     color: Color(0xFF06AFCA),
-                    fontSize: 36,
+                    fontSize: 42,
                     fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              Positioned(
-                left: 19,
-                top: 272,
-                child: Container(
-                  width: 335,
-                  height: 118,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 335,
-                          height: 49,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 335,
-                                  height: 49,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 0.50, color: Color(0xFF00ADC9)),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                top: 13,
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/24x24"),
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 59,
-                                top: 16,
-                                child: Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    color: Color(0xFF959292),
-                                    fontSize: 12,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 69,
-                        child: Container(
-                          width: 335,
-                          height: 49,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 335,
-                                  height: 49,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 0.50, color: Color(0xFF00ADC9)),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                top: 12,
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/24x24"),
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 59,
-                                top: 16,
-                                child: Text(
-                                  'Password',
-                                  style: TextStyle(
-                                    color: Color(0xFF959292),
-                                    fontSize: 12,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 291,
-                                top: 12,
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/24x24"),
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                Text(
+                  'account.',
+                  style: TextStyle(
+                    color: Color(0xFF06AFCA),
+                    fontSize: 42,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              Positioned(
-                left: 19,
-                top: 508,
-                child: Container(
-                  width: 335,
-                  height: 45,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                      left: 0,
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: Center(
-                        child: Container(
-                          width: 335,
-                          height: 45,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => HomePage()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF00ADC9),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
-                              ),
-                            ),
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+              ],
+            ),
+          ),
+        ),
 
+        SizedBox(height: 50),
 
-                    ],
+        Container(
+          width: 335,
+          height: 50,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1.0,
+              color: Color(0xFF04ADC8),
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Icon(
+                  Icons.email,
+                  color: Color(0xFF04ADC8),
+                ),
+              ),
+              Expanded(
+                child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: InputBorder.none,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: 40),
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Already have an account? ',
-                              style: TextStyle(
-                                color: Color(0xFF00ADC9),
-                                fontSize: 15,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Login',
-                              style: TextStyle(
-                                color: Color(0xFF00ADC9),
-                                fontSize: 15,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
             ],
+          ),
+        ),
+
+        SizedBox(height: 25),
+
+        Container(
+          width: 335,
+          height: 50,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1.0,
+              color: Color(0xFF04ADC8),
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Icon(
+                  Icons.lock,
+                  color: Color(0xFF04ADC8),
+                ),
+              ),
+              Expanded(
+                child: TextFormField(
+                  obscureText: !_isPasswordVisible,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: InputBorder.none,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: _togglePasswordVisibility,
+                icon: Icon(
+                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Color(0xFF04ADC8),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        SizedBox(height: 100),
+
+        // Sign Up button
+        Container(
+          width: 335,
+          height: 45,
+          decoration: BoxDecoration(
+            color: Color(0xFF04ADC8),
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: ElevatedButton(
+            onPressed: _navigateToHomePage, // Navigate to HomePage
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF04ADC8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40),
+              ),
+            ),
+            child: Text(
+              'Sign Up',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 200),
+            child: Text.rich(
+              TextSpan(
+                text: 'Already have an account? ',
+                style: TextStyle(
+                  color: Color(0xFF04ADC8),
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                ),
+                children: [
+                  TextSpan(
+                    text: 'Login',
+                    style: TextStyle(
+                      color: Color(0xFF04ADC8),
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = _navigateToLoginPage, // Navigate to LoginPage
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ],
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
